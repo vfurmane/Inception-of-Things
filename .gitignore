@@ -1,0 +1,6 @@
+*.swp
+*.sw*
+.DS_Store
+.nfs*
+tags
+.vagrant/
