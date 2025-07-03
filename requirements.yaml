@@ -6,6 +6,7 @@
   version: 1.0.1
 
 - src: abdennour.helmfile
+  version: master
 
 - src: averagebit.k3d
   version: 1.0.0
