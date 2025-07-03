@@ -1,0 +1,31 @@
+global:
+  hosts:
+    domain: localhost
+    gitlab:
+      name: gitlab.localhost
+    registry:
+      name: registry.localhost
+    minio:
+      name: minio.localhost
+  ingress:
+    configureCertmanager: false
+    tls:
+      enabled: false
+  psql:
+    password:
+      secret: gitlab-postgres
+      key: password
+  minio:
+    enabled: true
+
+certmanager:
+  install: false
+
+nginx-ingress:
+  enabled: true
+  controller:
+    service:
+      type: NodePort
+      nodePorts:
+        http: 30080
+        https: 30443

@@ -1,0 +1,10 @@
+- name: Provision VM with k3d and kubectl
+  hosts: vm
+  become: yes
+  vars:
+    docker_install_compose: false
+    docker_users: ["{{ ansible_user }}"]
+  roles:
+    - geerlingguy.docker
+    - averagebit.k3d
+    - githubixx.kubectl

@@ -1,0 +1,8 @@
+---
+- src: geerlingguy.docker
+
+- src: averagebit.k3d 
+  version: 1.0.0
+
+- src: githubixx.kubectl
+  version: 23.3.0+1.31.5
