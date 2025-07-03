@@ -1,0 +1,40 @@
+- name: Provision evaluation VM
+  hosts: '*'
+  become: yes
+  vars:
+    docker_install_compose: false
+    docker_users: ["{{ ansible_user }}"]
+
+  pre_tasks:
+    - name: Ensure packages are present
+      ansible.builtin.apt:
+        name:
+          - curl
+          - git
+          - xfce4
+          - zsh
+        state: present
+        update_cache: yes
+
+  roles:
+    - geerlingguy.docker
+    - githubixx.kubectl
+    - averagebit.k3d
+    - geerlingguy.helm
+    - abdennour.helmfile
+    - name: ctorgalson.oh-my-zsh
+      omz_user:
+        name: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        settings: ""
+
+  tasks:
+      - name: Ensure the user uses zsh
+        become: yes
+        user:
+          name: "{{ ansible_user }}"
+          # password: vagrant
+          password: "$y$j9T$l9aju.2ll9eylQ3iZBhWf/$ooW57CPg90sGQYyEQkr9NeS2TCYe9hSRp2dajaVtKQB"
+          shell: /bin/zsh
+      - name: Unconditionally reboot the machine now
+        ansible.builtin.reboot:

@@ -1,0 +1,17 @@
+---
+- src: geerlingguy.docker
+  version: 7.4.7
+
+- src: geerlingguy.helm
+  version: 1.0.1
+
+- src: abdennour.helmfile
+
+- src: averagebit.k3d
+  version: 1.0.0
+
+- src: githubixx.kubectl
+  version: 23.3.0+1.31.5
+
+- src: ctorgalson.oh-my-zsh
+  version: v2.3.2
