@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+  labels:
+    name: dev
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/vfurmane/sasaicic-iot-app.git"
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      selfHeal: true
