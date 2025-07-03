@@ -10,6 +10,7 @@
       ansible.builtin.apt:
         name:
           - curl
+          - firefox-esr
           - git
           - xfce4
           - zsh
