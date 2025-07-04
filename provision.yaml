@@ -27,11 +27,6 @@
     - name: geerlingguy.helm
       helm_version: "v3.18.3"
     - helmfile
-    - name: ctorgalson.oh-my-zsh
-      omz_user:
-        name: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
-        settings: ""
 
   handlers:
     - name: Reboot the machine
@@ -39,6 +34,15 @@
 
 - name: Configure user settings
   hosts: '*'
+
+  roles:
+    - name: ctorgalson.oh-my-zsh
+      become: true
+      omz_user:
+        name: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        settings: ""
+
   tasks:
     - name: Ensure the user uses zsh
       become: yes
