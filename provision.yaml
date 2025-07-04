@@ -5,7 +5,7 @@
     docker_install_compose: false
     docker_users: ["{{ ansible_user }}"]
 
-  pre_tasks:
+  tasks:
     - name: Ensure packages are present
       ansible.builtin.apt:
         name:
@@ -20,13 +20,23 @@
         update_cache: yes
       notify: Reboot the machine
 
-  roles:
-    - geerlingguy.docker
-    - githubixx.kubectl
-    - averagebit.k3d
-    - name: geerlingguy.helm
-      helm_version: "v3.18.3"
-    - helmfile
+    - name: Include geerlingguy.docker role
+      ansible.builtin.include_role:
+        name: geerlingguy.docker
+    - name: Include githubixx.kubectl role
+      ansible.builtin.include_role:
+        name: githubixx.kubectl
+    - name: Include averagebit.k3d role
+      ansible.builtin.include_role:
+        name: averagebit.k3d
+    - name: Include geerlingguy.helm role
+      ansible.builtin.include_role:
+        name: geerlingguy.helm
+      vars:
+        helm_version: "v3.18.3"
+    - name: Include helmfile role
+      ansible.builtin.include_role:
+        name: helmfile
 
   handlers:
     - name: Reboot the machine
