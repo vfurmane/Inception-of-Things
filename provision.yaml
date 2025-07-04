@@ -16,6 +16,7 @@
           - zsh
         state: present
         update_cache: yes
+      notify: Reboot the machine
 
   roles:
     - geerlingguy.docker
@@ -38,5 +39,7 @@
         # password: vagrant
         password: "$y$j9T$l9aju.2ll9eylQ3iZBhWf/$ooW57CPg90sGQYyEQkr9NeS2TCYe9hSRp2dajaVtKQB"
         shell: /bin/zsh
-    - name: Unconditionally reboot the machine now
+
+  handlers:
+    - name: Reboot the machine
       ansible.builtin.reboot:
