@@ -20,6 +20,9 @@
         update_cache: yes
       notify: Reboot the machine
 
+    - name: Include vbox-guest-additions role
+      ansible.builtin.include_role:
+        name: vbox-guest-additions
     - name: Include geerlingguy.docker role
       ansible.builtin.include_role:
         name: geerlingguy.docker
@@ -37,9 +40,6 @@
     - name: Include helmfile role
       ansible.builtin.include_role:
         name: helmfile
-    - name: Include vbox-guest-additions role
-      ansible.builtin.include_role:
-        name: vbox-guest-additions
 
   handlers:
     - name: Reboot the machine
