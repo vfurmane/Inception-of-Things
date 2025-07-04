@@ -1,4 +1,4 @@
-- name: Provision evaluation VM
+- name: Install required packages
   hosts: '*'
   become: yes
   vars:
