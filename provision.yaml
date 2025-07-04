@@ -12,7 +12,9 @@
           - curl
           - firefox-esr
           - git
+          - terminator
           - xfce4
+          - xfce4-goodies
           - zsh
         state: present
         update_cache: yes
