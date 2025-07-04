@@ -1,0 +1,8 @@
+---
+helmfile_version: "1.1.2"
+helmfile_repo: "https://github.com/helmfile/helmfile"
+helmfile_platform: "linux_amd64"
+helmfile_archive_url: "{{ helmfile_repo }}/releases/download/v{{ helmfile_version }}/helmfile_{{ helmfile_version }}_{{ helmfile_platform }}.tar.gz"
+helmfile_bin_dir: /usr/local/bin
+
+helmfile_perform_init: true

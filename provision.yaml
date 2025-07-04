@@ -22,7 +22,7 @@
     - githubixx.kubectl
     - averagebit.k3d
     - geerlingguy.helm
-    - abdennour.helmfile
+    - helmfile
     - name: ctorgalson.oh-my-zsh
       omz_user:
         name: "{{ ansible_user }}"

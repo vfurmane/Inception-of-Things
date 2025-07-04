@@ -1,0 +1,28 @@
+---
+- name: Get installed helmfile version
+  ansible.builtin.command: helmfile version -o short
+  ignore_errors: true
+  changed_when: false
+  register: helmfile_installed_version
+
+- name: Force install if versions mismatch
+  ansible.builtin.set_fact:
+    helmfile_reinstall_from_source: true
+  when: (helmfile_installed_version is succeeded and (helmfile_installed_version.stdout is version(helmfile_version, operator="!=")))
+
+- when: helmfile_installed_version is failed or helmfile_reinstall_from_source is defined and helmfile_reinstall_from_source
+  block:
+    - name: Ensure helmfile is downloaded and archived in its directory
+      ansible.builtin.unarchive:
+        src: "{{ helmfile_archive_url }}"
+        dest: "{{ helmfile_bin_dir }}"
+        remote_src: yes
+        extra_opts:
+          - helmfile
+
+- name: Ensure helmfile is initialized
+  shell: yes | helmfile init
+  register: helmfile_init
+  changed_when: "'Installed plugin' in helmfile_init.stdout"
+  failed_when: "'initialization completed' not in helmfile_init.stderr"
+  when: helmfile_perform_init
