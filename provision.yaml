@@ -37,6 +37,9 @@
     - name: Include helmfile role
       ansible.builtin.include_role:
         name: helmfile
+    - name: Include vbox-guest-additions role
+      ansible.builtin.include_role:
+        name: vbox-guest-additions
 
   handlers:
     - name: Reboot the machine

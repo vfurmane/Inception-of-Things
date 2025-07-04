@@ -1,0 +1,4 @@
+vbox_guest_additions_lsb_codename: "{{ ansible_lsb.codename }}"
+vbox_guest_additions_backports_apt_repository: "deb http://deb.debian.org/debian {{ vbox_guest_additions_lsb_codename }}-backports main contrib"
+vbox_guest_additions_fasttrack_apt_repository: "deb http://fasttrack.debian.net/debian-fasttrack/ {{ vbox_guest_additions_lsb_codename }}-fasttrack main contrib"
+vbox_guest_additions_fasttrack_backports_staging_apt_repository: "deb http://fasttrack.debian.net/debian-fasttrack/ {{ vbox_guest_additions_lsb_codename }}-backports-staging main contrib"

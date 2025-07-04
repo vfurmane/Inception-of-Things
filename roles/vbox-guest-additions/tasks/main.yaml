@@ -1,0 +1,37 @@
+---
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: "{{ vbox_guest_additions_backports_apt_repository }}"
+    state: present
+
+- name: Ensure required packages are installed
+  ansible.builtin.package:
+    name: fasttrack-archive-keyring
+
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: "{{ vbox_guest_additions_fasttrack_apt_repository }}"
+    state: present
+
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: "{{ vbox_guest_additions_fasttrack_backports_staging_apt_repository }}"
+    state: present
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Ensure the virtualbox ext pack license is accepted
+  ansible.builtin.debconf:
+    name: virtualbox-ext-pack
+    question: virtualbox-ext-pack/license
+    value: "true"
+    vtype: select
+
+- name: Ensure required packages are installed
+  ansible.builtin.package:
+    name:
+      - virtualbox
+      - virtualbox-ext-pack
+      - virtualbox-guest-x11
