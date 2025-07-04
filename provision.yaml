@@ -21,7 +21,8 @@
     - geerlingguy.docker
     - githubixx.kubectl
     - averagebit.k3d
-    - geerlingguy.helm
+    - name: geerlingguy.helm
+      helm_version: "v3.18.3"
     - helmfile
     - name: ctorgalson.oh-my-zsh
       omz_user:
