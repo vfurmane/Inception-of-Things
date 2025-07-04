@@ -47,3 +47,13 @@
         # password: vagrant
         password: "$y$j9T$l9aju.2ll9eylQ3iZBhWf/$ooW57CPg90sGQYyEQkr9NeS2TCYe9hSRp2dajaVtKQB"
         shell: /bin/zsh
+    - name: Ensure kubectl is aliased to k
+      ansible.builtin.blockinfile:
+        path: "{{ ansible_user_dir }}/.zshrc"
+        append_newline: true
+        prepend_newline: true
+        block: |
+          mkdir -p "${fpath[1]}"
+          source <(kubectl completion zsh)
+          alias k="kubectl"
+          compdef _kubectl k
