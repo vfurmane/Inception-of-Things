@@ -56,6 +56,8 @@
         name: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
         settings: ""
+      omz_plugins:
+        - git
 
   tasks:
     - name: Ensure the user uses zsh
