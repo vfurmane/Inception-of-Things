@@ -7,11 +7,11 @@ CTRL_PLANE_VM_NAME="sasaicicS"
 
 cd "${VAGRANTFILE_PWD}"
 
-# printf "Booting the cluster nodes\n"
-# vagrant up --no-provision
-# 
-# printf "Provisioning the cluster nodes\n"
-# vagrant provision
+printf "Booting the cluster nodes\n"
+vagrant up --no-provision
+
+printf "Provisioning the cluster nodes\n"
+vagrant provision
 
 printf "\n"
 printf "Success!\n"
