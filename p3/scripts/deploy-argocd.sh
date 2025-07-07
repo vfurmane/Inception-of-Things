@@ -30,6 +30,8 @@ DEFAULT_ARGOCD_USER=admin
 DEFAULT_ARGOCD_PASS="$(kubectl -n "${ARGOCD_NAMESPACE}" get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)"
 ARGOCD_HOST=argocd.localhost
 
+APP_HOST=app.localhost
+
 printf "\n"
 printf "Success!\n"
 printf "You may now go to the ArgoCD Web UI!\n"
@@ -39,4 +41,6 @@ printf "\n"
 printf "Credentials:\n"
 printf "user: %s\n" "${DEFAULT_ARGOCD_USER}"
 printf "pass: %s\n" "${DEFAULT_ARGOCD_PASS}"
+printf "\n"
+printf "Application is accessible at: http://%s\n" "${APP_HOST}"
 printf "\n"
