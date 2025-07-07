@@ -3,7 +3,6 @@ Kind: Kustomization
 resources:
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
   - argocd-ingress.yaml
-  - app.yaml
 
 patches:
   - path: argocd-patch.yaml

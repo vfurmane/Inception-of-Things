@@ -14,6 +14,12 @@ kubectl create namespace "${ARGOCD_NAMESPACE}" || true
 printf "Applying kustomize configuration\n"
 kubectl apply -k confs -n "${ARGOCD_NAMESPACE}"
 
+printf "Waiting for ArgoCD to be ready\n"
+kubectl wait deployment argocd-applicationset-controller --for=condition=available --timeout=60s -n "${ARGOCD_NAMESPACE}"
+
+printf "Applying application configuration\n"
+kubectl apply -f confs/app.yaml -n "${ARGOCD_NAMESPACE}"
+
 printf "Applying application ingress\n"
 kubectl apply -f confs/app-ingress.yaml -n "${APP_NAMESPACE}"
 
