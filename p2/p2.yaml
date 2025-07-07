@@ -170,7 +170,7 @@ spec:
             port:
               number: 8080
         path: /
-        pathType: Exact
+        pathType: Prefix
   - host: app2.com
     http:
       paths:
@@ -180,7 +180,7 @@ spec:
             port:
               number: 8080
         path: /
-        pathType: Exact
+        pathType: Prefix
   - host: app3.com
     http:
       paths:
@@ -190,4 +190,4 @@ spec:
             port:
               number: 8080
         path: /
-        pathType: Exact
+        pathType: Prefix
