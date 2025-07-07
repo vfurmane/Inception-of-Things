@@ -64,8 +64,7 @@
       become: yes
       user:
         name: "{{ ansible_user }}"
-        # password: vagrant
-        password: "$y$j9T$l9aju.2ll9eylQ3iZBhWf/$ooW57CPg90sGQYyEQkr9NeS2TCYe9hSRp2dajaVtKQB"
+        password: "{{ 'vagrant' | password_hash('sha512') }}"
         shell: /bin/zsh
     - name: Ensure kubectl is aliased to k
       ansible.builtin.blockinfile:
