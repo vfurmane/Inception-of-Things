@@ -60,6 +60,7 @@ Vagrant.configure("2") do |config|
     vb.gui = true
     vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
     vb.customize ["modifyvm", :id, "--vram", "64"]
+    vb.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
 
     vb.cpus = "8"
     vb.memory = "8192"
