@@ -22,14 +22,13 @@ kubectl wait deployment argocd-server --for=condition=available --timeout=60s -n
 
 DEFAULT_ARGOCD_USER=admin
 DEFAULT_ARGOCD_PASS="$(kubectl -n "${ARGOCD_NAMESPACE}" get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)"
-ARGOCD_HOST=argocd.localhost:8081
-ARGOCD_BASE_PATH=/argocd
+ARGOCD_HOST=argocd.localhost
 
 printf "\n"
 printf "Success!\n"
 printf "You may now go to the ArgoCD Web UI!\n"
 printf "\n"
-printf "\tLocal:\thttp://%s%s\n" "${ARGOCD_HOST}" "${ARGOCD_BASE_PATH}"
+printf "\tLocal:\thttp://%s\n" "${ARGOCD_HOST}"
 printf "\n"
 printf "Credentials:\n"
 printf "user: %s\n" "${DEFAULT_ARGOCD_USER}"
