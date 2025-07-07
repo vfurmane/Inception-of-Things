@@ -55,7 +55,14 @@
       omz_user:
         name: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
-        settings: ""
+        settings: |
+          mkdir -p "${fpath[1]}"
+          source <(kubectl completion zsh)
+          alias k="kubectl"
+          compdef _kubectl k
+
+          alias nvim="vim"
+          compdef _vim nvim
       omz_plugins:
         - git
 
@@ -66,16 +73,3 @@
         name: "{{ ansible_user }}"
         password: "{{ 'vagrant' | password_hash('sha512') }}"
         shell: /bin/zsh
-    - name: Ensure kubectl is aliased to k
-      ansible.builtin.blockinfile:
-        path: "{{ ansible_user_dir }}/.zshrc"
-        append_newline: true
-        prepend_newline: true
-        block: |
-          mkdir -p "${fpath[1]}"
-          source <(kubectl completion zsh)
-          alias k="kubectl"
-          compdef _kubectl k
-
-          alias nvim="vim"
-          compdef _vim nvim
