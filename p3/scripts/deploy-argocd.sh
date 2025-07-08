@@ -6,7 +6,8 @@ ARGOCD_NAMESPACE=argocd
 APP_NAMESPACE=dev
 
 printf "Creating k3d cluster\n"
-k3d cluster create -p "80:80@loadbalancer"
+k3d cluster create -p "80:80@loadbalancer" -p "443:443@loadbalancer" \
+  -p "32022:32022@loadbalancer"
 
 printf "Creating '%s' namespace\n" "${ARGOCD_NAMESPACE}"
 kubectl create namespace "${ARGOCD_NAMESPACE}" || true
