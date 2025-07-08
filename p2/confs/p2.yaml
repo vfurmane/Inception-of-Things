@@ -41,7 +41,7 @@ metadata:
   labels:
     app: app2
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: app2
@@ -76,7 +76,7 @@ metadata:
   labels:
     app: app3
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: app3
